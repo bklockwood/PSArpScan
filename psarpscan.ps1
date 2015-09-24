@@ -1,3 +1,9 @@
+
+Param (
+  [Parameter(Position=0)][string]$Subnet,
+  [Parameter(Position=1)][string]$NmapLocation = "C:\Users\Bryan\SkyDrive\Filer\Tools\nmap-6.49BETA4\nmap.exe"
+)
+
 function New-Arpscan {
 <#
 .Synopsis
@@ -23,11 +29,11 @@ TBD
             Write-Warning "nmap not found at $NmapLocation, please rectify."
             break
         }
-        Write-Host "Hang on, performing nmap scan..." -NoNewline
+        Write-Host "Performing nmap ARP scan of $Subnet ... " -NoNewline
     }
     Process {
         $ErrorActionPreference = "SilentlyContinue"
-        [xml]$output = (& $Nmaplocation -sn $subnet -oX -)
+        [xml]$output = (& $Nmaplocation -sn $subnet -oX -)        
         $ErrorActionPreference = "Continue"
         $output
     }
@@ -87,5 +93,5 @@ TBD
 
 }
 
-$output = New-Arpscan -Subnet 10.0.0.0/24 -NmapLocation .\nmap.exe
+$output = New-Arpscan -Subnet $Subnet -NmapLocation $NmapLocation
 Parse-NmapXML -NmapXML $output
