@@ -1,6 +1,6 @@
 
 Param (
-  [Parameter(Position=0)][string]$Subnet,
+  [Parameter(Position=0)][string]$Subnet = "10.0.0.0/24",
   [Parameter(Position=1)][string]$NmapLocation = "C:\Users\Bryan\SkyDrive\Filer\Tools\nmap-6.49BETA4\nmap.exe"
 )
 
@@ -61,8 +61,8 @@ TBD
  
     Begin {
         if (!$NmapXML.nmaprun.host) {
-            Write-Warning "oops"
-            #break
+            Write-Warning "Oops, improper (or nonexistent) XML. Exiting."
+            break
         }
     }
 
