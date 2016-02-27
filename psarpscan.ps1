@@ -12,7 +12,7 @@ Scan each IP in subnet for ARP responses, using nmap
 TBD
 .PARAMETER Subnet
 A subnet specified in CIDR notation, eg 10.0.0.0/24
-.PARAMETER OutputFile
+.PARAMETER NmapLocation
 Location of the nmap executable
 .EXAMPLE
 TBD
